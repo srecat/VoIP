@@ -41,3 +41,23 @@ username=1002
 [1002]
 type=aor
 max_contacts=1
+
+; --- Абонент 1003 (для ZoiPer на ПК) ---
+[1003]
+type=endpoint
+context=internal
+disallow=all
+allow=ulaw
+allow=alaw
+auth=1003
+aors=1003
+
+[1003]
+type=auth
+auth_type=userpass
+password={{ asterisk_sip_password }}
+username=1003
+
+[1003]
+type=aor
+max_contacts=1

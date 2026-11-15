@@ -35,6 +35,15 @@
     mode: '0640'
   notify: Restart asterisk
 
+- name: Copy logger.conf
+  ansible.builtin.template:
+    src: logger.conf.j2
+    dest: /etc/asterisk/logger.conf
+    owner: asterisk
+    group: asterisk
+    mode: '0640'
+  notify: Restart asterisk
+
 - name: Ensure Asterisk is started and enabled
   ansible.builtin.systemd:
     name: asterisk
