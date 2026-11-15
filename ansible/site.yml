@@ -5,9 +5,14 @@
   roles:
     - node_exporter
 
-
 - name: Deploy Asterisk to VoIP server
   hosts: voip
   become: yes
   roles:
     - asterisk
+
+- name: Deploy Prometheus to monitoring server
+  hosts: monitoring
+  become: yes
+  roles:
+    - prometheus
