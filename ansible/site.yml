@@ -10,6 +10,7 @@
   become: yes
   roles:
     - asterisk
+    - asterisk_exporter   # <--- ДОБАВИЛИ СЮДА
 
 - name: Deploy Prometheus to monitoring server
   hosts: monitoring

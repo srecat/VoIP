@@ -1,0 +1,5 @@
+---
+asterisk_exporter_version: "0.1.0"
+asterisk_exporter_port: 9110
+asterisk_ami_host: "127.0.0.1"
+asterisk_ami_port: 5038

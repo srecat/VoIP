@@ -1,0 +1,17 @@
+[Unit]
+Description=Asterisk Exporter for Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=asterisk_exporter
+Group=asterisk_exporter
+Type=simple
+ExecStart=/usr/local/bin/asterisk_exporter \
+  --ami-address={{ asterisk_ami_host }}:{{ asterisk_ami_port }} \
+  --ami-username=exporter \
+  --ami-password=SuperSecretPassword123 \
+  --web.listen-address=:{{ asterisk_exporter_port }}
+
+[Install]
+WantedBy=multi-user.target

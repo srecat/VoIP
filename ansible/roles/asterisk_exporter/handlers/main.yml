@@ -1,0 +1,6 @@
+---
+- name: Restart asterisk_exporter
+  ansible.builtin.systemd:
+    name: asterisk_exporter
+    state: restarted
+    daemon_reload: yes
