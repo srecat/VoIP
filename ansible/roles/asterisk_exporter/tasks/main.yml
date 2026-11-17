@@ -6,15 +6,15 @@
     system: yes
     create_home: no
 
-- name: Download and unarchive asterisk_exporter
-  ansible.builtin.unarchive:
-    src: "https://github.com/CpuID/asterisk_exporter/releases/download/v{{ asterisk_exporter_version }}/asterisk_exporter_{{ asterisk_exporter_version }}_linux_amd64.tar.gz"
-    dest: /tmp
-    remote_src: yes
+- name: Install Golang
+  ansible.builtin.apt:
+    name: golang-go
+    state: present
+    update_cache: yes
 
-- name: Copy asterisk_exporter binary
+- name: Copy asterisk_exporter binary to /usr/local/bin
   ansible.builtin.copy:
-    src: "/tmp/asterisk_exporter-{{ asterisk_exporter_version }}.linux-amd64/asterisk_exporter"
+    src: /root/go/bin/asterisk_exporter
     dest: /usr/local/bin/asterisk_exporter
     mode: '0755'
     remote_src: yes

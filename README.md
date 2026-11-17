@@ -17,3 +17,7 @@ See [`docs/index.md`](docs/index.md) (coming soon).
 ## License
 
 MIT
+
+## Progress (Day 3)
+- Deployed Prometheus and Grafana.
+- Configured Ansible roles structure.
