@@ -17,9 +17,15 @@
     - /etc/prometheus
     - /var/lib/prometheus
 
-- name: Download and unarchive prometheus
+- name: Copy prometheus archive from local (if already downloaded)
+  ansible.builtin.copy:
+    src: /tmp/prometheus-2.53.0.linux-amd64.tar.gz
+    dest: /tmp/prometheus-2.53.0.linux-amd64.tar.gz
+    mode: '0644'
+
+- name: Unarchive prometheus
   ansible.builtin.unarchive:
-    src: "https://github.com/prometheus/prometheus/releases/download/v{{ prometheus_version }}/prometheus-{{ prometheus_version }}.linux-amd64.tar.gz"
+    src: /tmp/prometheus-2.53.0.linux-amd64.tar.gz
     dest: /tmp
     remote_src: yes
 
