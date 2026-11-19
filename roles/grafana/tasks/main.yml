@@ -1,0 +1,46 @@
+---
+- name: Install dependencies for Grafana
+  ansible.builtin.apt:
+    name:
+      - adduser
+      - libfontconfig1
+      - musl
+    state: present
+    update_cache: yes
+
+- name: Download Grafana .deb package
+  ansible.builtin.get_url:
+    url: "https://dl.grafana.com/oss/release/grafana_{{ grafana_version }}_amd64.deb"
+    dest: "/tmp/grafana_{{ grafana_version }}_amd64.deb"
+    mode: '0644'
+
+- name: Install Grafana from .deb package
+  ansible.builtin.apt:
+    deb: "/tmp/grafana_{{ grafana_version }}_amd64.deb"
+
+- name: Create Grafana provisioning directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: grafana
+    mode: '0750'
+  loop:
+    - /etc/grafana/provisioning/datasources
+    - /etc/grafana/provisioning/dashboards
+
+- name: Copy Prometheus datasource configuration
+  ansible.builtin.template:
+    src: datasource.yml.j2
+    dest: /etc/grafana/provisioning/datasources/prometheus.yml
+    owner: root
+    group: grafana
+    mode: '0640'
+  notify: Restart grafana
+
+- name: Ensure Grafana is started and enabled
+  ansible.builtin.systemd:
+    name: grafana-server
+    state: started
+    enabled: yes
+    daemon_reload: yes

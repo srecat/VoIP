@@ -23,11 +23,6 @@
     dest: /tmp/prometheus-2.53.0.linux-amd64.tar.gz
     mode: '0644'
 
-- name: Unarchive prometheus
-  ansible.builtin.unarchive:
-    src: /tmp/prometheus-2.53.0.linux-amd64.tar.gz
-    dest: /tmp
-    remote_src: yes
 
 - name: Copy prometheus binaries
   ansible.builtin.copy:
