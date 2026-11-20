@@ -11,3 +11,16 @@ ExecStart=/usr/local/bin/asterisk_exporter --web.listen-address=:9815
 
 [Install]
 WantedBy=multi-user.target
+[Unit]
+Description=Asterisk Exporter for Prometheus
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+User=asterisk
+Group=asterisk
+Type=simple
+ExecStart=/usr/local/bin/asterisk_exporter --web.listen-address=:9815
+
+[Install]
+WantedBy=multi-user.target
