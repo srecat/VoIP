@@ -27,3 +27,4 @@ Prometheus Targets - docs/screenshots/prometheus-targets.png
 ## License
 
 MIT
+- ✅ **Asterisk Exporter:** Fixed permissions and built first Grafana dashboard (Active Calls).
