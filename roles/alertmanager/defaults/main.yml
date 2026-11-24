@@ -1,0 +1,8 @@
+---
+alertmanager_version: "0.27.0"
+alertmanager_port: 9093
+smtp_smarthost: "smtp.gmail.com:587"
+smtp_from: "your_email@gmail.com"
+smtp_auth_username: "your_email@gmail.com"
+smtp_auth_password: "твой_пароль_приложения"
+alert_email_to: "your_email@gmail.com"
